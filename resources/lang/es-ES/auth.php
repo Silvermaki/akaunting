@@ -4,8 +4,8 @@ return [
 
     'profile'               => 'Perfil',
     'logout'                => 'Salir',
-    'login'                 => 'Iniciar sesión',
-    'login_to'              => 'Inicia sesión para empezar',
+    'login'                 => 'Conectarse',
+    'login_to'              => 'Conectarse',
     'remember_me'           => 'Recordarme',
     'forgot_password'       => 'Olvidé mi contraseña',
     'reset_password'        => 'Restablecer Contraseña',
