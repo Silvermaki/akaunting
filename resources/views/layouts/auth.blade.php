@@ -26,7 +26,7 @@
             <!-- /.login-box-body -->
 
             <div class="login-box-footer">
-                {{ trans('footer.powered') }}: <a href="{{ trans('footer.link') }}" target="_blank">{{ trans('footer.software') }}</a>
+                <a href="http://54.173.2.61">DES Consulting</a>
             </div>
             <!-- /.login-box-footer -->
 
