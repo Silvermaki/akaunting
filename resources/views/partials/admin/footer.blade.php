@@ -2,9 +2,9 @@
 
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>{{ trans('footer.version') }}</b> {{ version('short') }}
+        <b>{{ trans('footer.version') }}</b> 1.0.8
     </div>
-    <strong>{{ trans('footer.powered') }}</strong>: <a href="{{ trans('footer.link') }}" target="_blank">{{ trans('footer.software') }}</a>
+    <strong>DES Consulting</strong>
 </footer>
 
 @stack('footer_end')
