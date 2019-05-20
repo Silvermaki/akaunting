@@ -119,7 +119,6 @@ class CreateInvoice
     protected function addTotals($invoice, $request, $taxes, $sub_total, $discount_total, $tax_total)
     {
         // Check if totals are in request, i.e. api
-        echo $request;
         if (!empty($request['totals'])) {
             $sort_order = 1;
 
@@ -152,6 +151,21 @@ class CreateInvoice
 
         $sort_order++;
 
+        if (isset($taxes)) {
+            foreach ($taxes as $tax) {
+                InvoiceTotal::create([
+                    'company_id' => $request['company_id'],
+                    'invoice_id' => $invoice->id,
+                    'code' => 'sub_total',
+                    'name' => 'Subtotal -'." ".$tax['name'],
+                    'amount' => floatval($tax['subtotal']),
+                    'sort_order' => $sort_order,
+                ]);
+
+                $sort_order++;
+            }
+        }
+
         // Added invoice discount
         if ($discount_total) {
             InvoiceTotal::create([
@@ -178,17 +192,6 @@ class CreateInvoice
                     'code' => 'tax',
                     'name' => $tax['name'],
                     'amount' => $tax['amount'],
-                    'sort_order' => $sort_order,
-                ]);
-
-                $sort_order++;
-
-                InvoiceTotal::create([
-                    'company_id' => $request['company_id'],
-                    'invoice_id' => $invoice->id,
-                    'code' => 'sub_total',
-                    'name' => 'Subtotal - '+ $tax['name'],
-                    'amount' => $tax['subtotal'],
                     'sort_order' => $sort_order,
                 ]);
 
