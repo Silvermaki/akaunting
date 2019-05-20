@@ -68,7 +68,7 @@ class CreateInvoice
                             $taxes[$item_tax['tax_id']] = [
                                 'name' => $item_tax['name'],
                                 'amount' => $item_tax['amount'],
-                                'subtotal' => $invoice_item->tax + $item_tax['amount']
+                                'subtotal' => $invoice_item->total + $item_tax['amount']
                             ];
                             
                         }
