@@ -45,7 +45,6 @@ class CreateInvoice
         }
 
         $taxes = [];
-
         $tax_total = 0;
         $sub_total = 0;
         $discount_total = 0;
@@ -64,11 +63,14 @@ class CreateInvoice
                     foreach ($invoice_item->item_taxes as $item_tax) {
                         if (isset($taxes) && array_key_exists($item_tax['tax_id'], $taxes)) {
                             $taxes[$item_tax['tax_id']]['amount'] += $item_tax['amount'];
+                            $taxes[$item_tax['tax_id']]['subtotal'] += $invoice_item->tax + $item_tax['amount'];
                         } else {
                             $taxes[$item_tax['tax_id']] = [
                                 'name' => $item_tax['name'],
-                                'amount' => $item_tax['amount']
+                                'amount' => $item_tax['amount'],
+                                'subtotal' => $invoice_item->tax + $item_tax['amount']
                             ];
+                            
                         }
                     }
                 }
@@ -175,6 +177,17 @@ class CreateInvoice
                     'code' => 'tax',
                     'name' => $tax['name'],
                     'amount' => $tax['amount'],
+                    'sort_order' => $sort_order,
+                ]);
+
+                $sort_order++;
+                
+                InvoiceTotal::create([
+                    'company_id' => $request['company_id'],
+                    'invoice_id' => $invoice->id,
+                    'code' => 'tax',
+                    'name' => 'Subtotal - '+ $tax['name'],
+                    'amount' => $tax['subtotal'],
                     'sort_order' => $sort_order,
                 ]);
 
