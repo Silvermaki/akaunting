@@ -185,7 +185,7 @@ class CreateInvoice
                 InvoiceTotal::create([
                     'company_id' => $request['company_id'],
                     'invoice_id' => $invoice->id,
-                    'code' => 'tax',
+                    'code' => 'sub_total',
                     'name' => 'Subtotal - '+ $tax['name'],
                     'amount' => $tax['subtotal'],
                     'sort_order' => $sort_order,
